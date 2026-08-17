@@ -49,7 +49,7 @@ async function runReport(propertyId, request) {
 }
 
 function rowValue(row, index, type = 'metric') {
-  const values = type === 'metric' ? row.metricValues : row.dimensionValues
+  const values = type === 'metric' ? row?.metricValues : row?.dimensionValues
   return values?.[index]?.value
 }
 
