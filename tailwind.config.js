@@ -41,7 +41,7 @@ export default {
         xl: '28px',
       },
       fontFamily: {
-        sans: ['"Roboto"', '"Google Sans"', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
       },
       keyframes: {

@@ -63,6 +63,7 @@ export async function getGA4Dashboard(propertyId, range) {
     trafficSourcesResp,
     topCountriesResp,
     deviceResp,
+    topEventsResp,
   ] = await Promise.all([
     runReport(propertyId, {
       dateRanges: dateRange,
@@ -72,6 +73,7 @@ export async function getGA4Dashboard(propertyId, range) {
         { name: 'totalUsers' },
         { name: 'bounceRate' },
         { name: 'averageSessionDuration' },
+        { name: 'eventCount' },
       ],
     }),
     range === 'today'
@@ -114,6 +116,13 @@ export async function getGA4Dashboard(propertyId, range) {
       metrics: [{ name: 'sessions' }],
       orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
     }),
+    runReport(propertyId, {
+      dateRanges: dateRange,
+      dimensions: [{ name: 'eventName' }],
+      metrics: [{ name: 'eventCount' }],
+      orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+      limit: 12,
+    }),
   ])
 
   const totalsRow = totalsResp.rows?.[0]
@@ -122,6 +131,7 @@ export async function getGA4Dashboard(propertyId, range) {
   const totalUsers = Number(rowValue(totalsRow, 2) ?? 0)
   const bounceRateRaw = Number(rowValue(totalsRow, 3) ?? 0)
   const avgSessionDurationRaw = Number(rowValue(totalsRow, 4) ?? 0)
+  const totalEvents = Number(rowValue(totalsRow, 5) ?? 0)
 
   let pageviewsByHour
   let pageviewsByDay
@@ -182,6 +192,15 @@ export async function getGA4Dashboard(propertyId, range) {
     }
   })
 
+  const topEvents = (topEventsResp.rows || []).map((row) => {
+    const count = Number(rowValue(row, 0, 'metric') ?? 0)
+    return {
+      event: rowValue(row, 0, 'dimension'),
+      count,
+      percentage: pct(count, totalEvents),
+    }
+  })
+
   return {
     totalPageviews,
     totalSessions,
@@ -194,5 +213,6 @@ export async function getGA4Dashboard(propertyId, range) {
     trafficSources,
     topCountries,
     deviceCategory,
+    topEvents,
   }
 }
