@@ -65,10 +65,12 @@ export default function HourlyChart({ data }) {
             type="monotone"
             dataKey="actual"
             stroke={colors.primary}
-            strokeWidth={2}
+            strokeWidth={2.5}
             fill="url(#pvFill)"
             connectNulls={false}
-            isAnimationActive={false}
+            isAnimationActive
+            animationDuration={800}
+            animationEasing="ease-out"
           />
           <Line
             type="monotone"

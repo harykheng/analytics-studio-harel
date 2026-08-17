@@ -16,7 +16,10 @@ export default function CountriesList({ countries }) {
             </span>
           </div>
           <div className="h-1.5 rounded-full bg-surface-2 overflow-hidden">
-            <div className="h-full bg-tertiary rounded-full" style={{ width: `${Math.min(c.percentage, 100)}%` }} />
+            <div
+              className="h-full bg-tertiary rounded-full transition-[width] duration-700 ease-out"
+              style={{ width: `${Math.min(c.percentage, 100)}%` }}
+            />
           </div>
         </div>
       ))}

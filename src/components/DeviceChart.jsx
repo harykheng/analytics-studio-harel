@@ -35,7 +35,9 @@ export default function DeviceChart({ devices }) {
               innerRadius="65%"
               outerRadius="90%"
               paddingAngle={2}
-              isAnimationActive={false}
+              isAnimationActive
+              animationDuration={700}
+              animationEasing="ease-out"
             >
               {devices.map((d) => (
                 <Cell key={d.device} fill={deviceColors[d.device] ?? colors.outline} stroke="none" />
@@ -58,7 +60,7 @@ export default function DeviceChart({ devices }) {
         {devices.map((d) => (
           <span
             key={d.device}
-            className="chip bg-surface-2 text-on-surface-variant capitalize"
+            className="chip bg-surface-2 text-on-surface-variant capitalize border border-outline-variant"
           >
             <span
               className="h-2 w-2 rounded-full"

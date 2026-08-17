@@ -16,7 +16,7 @@ export default function SectionHeader({ name, domain, isLive, lastUpdated, secon
           </a>
         </div>
         {isLive && (
-          <span className="chip bg-surface-2 text-success">
+          <span className="chip bg-primary-container/50 text-success border border-success/20 animate-fadeInUp">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-success animate-pulseLive" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
