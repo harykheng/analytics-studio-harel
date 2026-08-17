@@ -99,7 +99,12 @@ export async function getGA4Dashboard(propertyId, range) {
     }),
     runReport(propertyId, {
       dateRanges: dateRange,
-      dimensions: [{ name: 'sessionSource' }, { name: 'sessionMedium' }, { name: 'sessionDefaultChannelGroup' }],
+      dimensions: [
+        { name: 'sessionSource' },
+        { name: 'sessionMedium' },
+        { name: 'sessionDefaultChannelGroup' },
+        { name: 'sessionCampaignName' },
+      ],
       metrics: [{ name: 'sessions' }, { name: 'engagementRate' }, { name: 'newUsers' }],
       orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
       limit: 10,
@@ -179,6 +184,7 @@ export async function getGA4Dashboard(propertyId, range) {
       source: rowValue(row, 0, 'dimension'),
       medium: rowValue(row, 1, 'dimension'),
       channelGroup: rowValue(row, 2, 'dimension'),
+      campaign: rowValue(row, 3, 'dimension'),
       sessions,
       newUsers,
       engagementRate: `${(engagementRateRaw * 100).toFixed(1)}%`,

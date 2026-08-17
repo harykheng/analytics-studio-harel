@@ -12,6 +12,7 @@ export default function TrafficSources({ sources }) {
           <tr className="text-[12px] leading-[16px] font-medium tracking-[0.5px] text-on-surface-variant uppercase">
             <th className="pb-2 pr-3 font-medium">Source / Medium</th>
             <th className="pb-2 pr-3 font-medium">Channel</th>
+            <th className="pb-2 pr-3 font-medium">Campaign</th>
             <th className="pb-2 pr-3 font-medium text-right">Sessions</th>
             <th className="pb-2 pr-3 font-medium text-right">New Users</th>
             <th className="pb-2 pr-3 font-medium text-right">Engagement</th>
@@ -21,7 +22,7 @@ export default function TrafficSources({ sources }) {
         <tbody>
           {sources.map((s) => (
             <tr
-              key={`${s.source}/${s.medium}`}
+              key={`${s.source}/${s.medium}/${s.campaign}`}
               className="border-t border-outline-variant/60 hover:bg-surface-2 transition-colors"
             >
               <td className="py-2 pr-3 text-[13px] text-on-surface">
@@ -32,6 +33,9 @@ export default function TrafficSources({ sources }) {
                 <span className="chip bg-secondary-container text-on-secondary-container text-[11px] whitespace-nowrap">
                   {s.channelGroup || '—'}
                 </span>
+              </td>
+              <td className="py-2 pr-3 text-[13px] text-on-surface-variant whitespace-nowrap">
+                {!s.campaign || s.campaign === '(not set)' ? '—' : s.campaign}
               </td>
               <td className="py-2 pr-3 text-[14px] text-on-surface text-right tabular-nums">
                 {formatNumber(s.sessions)}
