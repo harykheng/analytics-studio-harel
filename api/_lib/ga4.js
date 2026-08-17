@@ -61,6 +61,7 @@ export async function getGA4Dashboard(propertyId, range) {
     breakdownResp,
     topPagesResp,
     trafficSourcesResp,
+    channelGroupResp,
     topCountriesResp,
     deviceResp,
     topEventsResp,
@@ -98,10 +99,16 @@ export async function getGA4Dashboard(propertyId, range) {
     }),
     runReport(propertyId, {
       dateRanges: dateRange,
-      dimensions: [{ name: 'sessionSource' }, { name: 'sessionMedium' }],
-      metrics: [{ name: 'sessions' }],
+      dimensions: [{ name: 'sessionSource' }, { name: 'sessionMedium' }, { name: 'sessionDefaultChannelGroup' }],
+      metrics: [{ name: 'sessions' }, { name: 'engagementRate' }, { name: 'newUsers' }],
       orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
       limit: 10,
+    }),
+    runReport(propertyId, {
+      dateRanges: dateRange,
+      dimensions: [{ name: 'sessionDefaultChannelGroup' }],
+      metrics: [{ name: 'sessions' }, { name: 'engagementRate' }],
+      orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
     }),
     runReport(propertyId, {
       dateRanges: dateRange,
@@ -166,10 +173,26 @@ export async function getGA4Dashboard(propertyId, range) {
 
   const trafficSources = (trafficSourcesResp.rows || []).map((row) => {
     const sessions = Number(rowValue(row, 0, 'metric') ?? 0)
+    const engagementRateRaw = Number(rowValue(row, 1, 'metric') ?? 0)
+    const newUsers = Number(rowValue(row, 2, 'metric') ?? 0)
     return {
       source: rowValue(row, 0, 'dimension'),
       medium: rowValue(row, 1, 'dimension'),
+      channelGroup: rowValue(row, 2, 'dimension'),
       sessions,
+      newUsers,
+      engagementRate: `${(engagementRateRaw * 100).toFixed(1)}%`,
+      percentage: pct(sessions, totalSessions),
+    }
+  })
+
+  const channelGroups = (channelGroupResp.rows || []).map((row) => {
+    const sessions = Number(rowValue(row, 0, 'metric') ?? 0)
+    const engagementRateRaw = Number(rowValue(row, 1, 'metric') ?? 0)
+    return {
+      channelGroup: rowValue(row, 0, 'dimension'),
+      sessions,
+      engagementRate: `${(engagementRateRaw * 100).toFixed(1)}%`,
       percentage: pct(sessions, totalSessions),
     }
   })
@@ -211,6 +234,7 @@ export async function getGA4Dashboard(propertyId, range) {
     pageviewsByDay,
     topPages,
     trafficSources,
+    channelGroups,
     topCountries,
     deviceCategory,
     topEvents,

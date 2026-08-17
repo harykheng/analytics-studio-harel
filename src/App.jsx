@@ -6,6 +6,7 @@ import HourlyChart from './components/HourlyChart.jsx'
 import DailyChart from './components/DailyChart.jsx'
 import TopPagesTable from './components/TopPagesTable.jsx'
 import TrafficSources from './components/TrafficSources.jsx'
+import ChannelGroups from './components/ChannelGroups.jsx'
 import DeviceChart from './components/DeviceChart.jsx'
 import CountriesList from './components/CountriesList.jsx'
 import TopEvents from './components/TopEvents.jsx'
@@ -67,21 +68,25 @@ function PropertySection({ property, range }) {
             <Panel title="Top Pages" delay={120}>
               <TopPagesTable pages={data.topPages} />
             </Panel>
-            <Panel title="Traffic Sources" delay={140}>
-              <TrafficSources sources={data.trafficSources} />
+            <Panel title="Channels" delay={140}>
+              <ChannelGroups channels={data.channelGroups} />
             </Panel>
           </div>
 
+          <Panel title="Traffic Acquisition" delay={160}>
+            <TrafficSources sources={data.trafficSources} />
+          </Panel>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Panel title="Devices" delay={160}>
+            <Panel title="Devices" delay={180}>
               <DeviceChart devices={data.deviceCategory} />
             </Panel>
-            <Panel title="Top Countries" delay={180}>
+            <Panel title="Top Countries" delay={200}>
               <CountriesList countries={data.topCountries} />
             </Panel>
           </div>
 
-          <Panel title="Top Events" delay={200}>
+          <Panel title="Top Events" delay={220}>
             <TopEvents events={data.topEvents} />
           </Panel>
         </>
