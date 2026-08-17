@@ -8,6 +8,7 @@ import TopPagesTable from './components/TopPagesTable.jsx'
 import TrafficSources from './components/TrafficSources.jsx'
 import DeviceChart from './components/DeviceChart.jsx'
 import CountriesList from './components/CountriesList.jsx'
+import TopEvents from './components/TopEvents.jsx'
 import ErrorCard from './components/ErrorCard.jsx'
 import { SectionSkeleton } from './components/SkeletonLoader.jsx'
 import { useGA4 } from './hooks/useGA4.js'
@@ -79,6 +80,10 @@ function PropertySection({ property, range }) {
               <CountriesList countries={data.topCountries} />
             </Panel>
           </div>
+
+          <Panel title="Top Events" delay={200}>
+            <TopEvents events={data.topEvents} />
+          </Panel>
         </>
       )}
     </section>
