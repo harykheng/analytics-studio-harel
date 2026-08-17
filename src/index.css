@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #0f1117;
+  color: #e6e1e5;
+}
+
+* {
+  font-family: 'Roboto', 'Google Sans', system-ui, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #49454f;
+  border-radius: 8px;
+}
+
+@layer components {
+  /* MD3 elevation overlays for dark theme: higher elevation = lighter surface */
+  .elevation-0 {
+    background-color: #1a1d23;
+  }
+  .elevation-1 {
+    background-color: #202430;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+  .elevation-2 {
+    background-color: #232838;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  }
+  .elevation-3 {
+    background-color: #262c3f;
+    box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #1e2128 25%, #262c3a 37%, #1e2128 63%);
+    background-size: 800px 100%;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+  }
+}
