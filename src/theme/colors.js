@@ -1,28 +1,28 @@
-// MD3 dark color scheme tokens (mirrors tailwind.config.js)
+// MD3 light color scheme tokens (mirrors tailwind.config.js)
 export const colors = {
-  bg: '#0f1117',
-  surface: '#1a1d23',
-  surfaceVariant: '#1e2128',
-  primary: '#D0BCFF',
-  onPrimary: '#381E72',
-  primaryContainer: '#4F378B',
-  onPrimaryContainer: '#EADDFF',
-  secondary: '#CCC2DC',
-  onSecondary: '#332D41',
-  secondaryContainer: '#4A4458',
-  tertiary: '#EFB8C8',
-  onTertiary: '#492532',
-  tertiaryContainer: '#633B48',
-  onSurface: '#E6E1E5',
-  onSurfaceVariant: '#C9C5D0',
-  outline: '#938F99',
-  outlineVariant: '#49454F',
-  error: '#F2B8B5',
-  success: '#7DD8A4',
+  bg: '#F4F6F5',
+  surface: '#FFFFFF',
+  surfaceVariant: '#EEF1EF',
+  primary: '#14532D',
+  onPrimary: '#FFFFFF',
+  primaryContainer: '#DCFCE7',
+  onPrimaryContainer: '#0F3D22',
+  secondary: '#3F6B57',
+  onSecondary: '#FFFFFF',
+  secondaryContainer: '#E3EEE7',
+  tertiary: '#F97362',
+  onTertiary: '#FFFFFF',
+  tertiaryContainer: '#FFE4DF',
+  onSurface: '#111827',
+  onSurfaceVariant: '#6B7280',
+  outline: '#D1D5DB',
+  outlineVariant: '#E5E7EB',
+  error: '#DC2626',
+  success: '#16A34A',
 }
 
 // Chart series palette drawn from MD3 roles
-export const chartPalette = [colors.primary, colors.tertiary, colors.secondary, '#9AC7FA', '#F6C177']
+export const chartPalette = [colors.primary, colors.tertiary, colors.secondary, '#2563EB', '#F6C177']
 
 export const deviceColors = {
   desktop: colors.primary,

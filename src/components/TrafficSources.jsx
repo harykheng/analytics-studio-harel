@@ -18,7 +18,10 @@ export default function TrafficSources({ sources }) {
             </span>
           </div>
           <div className="h-1.5 rounded-full bg-surface-2 overflow-hidden">
-            <div className="h-full bg-secondary rounded-full" style={{ width: `${Math.min(s.percentage, 100)}%` }} />
+            <div
+              className="h-full bg-secondary rounded-full transition-[width] duration-700 ease-out"
+              style={{ width: `${Math.min(s.percentage, 100)}%` }}
+            />
           </div>
         </div>
       ))}

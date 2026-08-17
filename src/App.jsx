@@ -17,10 +17,13 @@ const PROPERTIES = [
   { key: 'ordi', name: 'Ordi', domain: 'ordi.studioharel.id', endpoint: '/api/ga4-ordi' },
 ]
 
-function Panel({ title, children }) {
+function Panel({ title, children, delay = 0 }) {
   return (
-    <div className="elevation-1 rounded-xl p-4">
-      <h3 className="text-[22px] leading-[28px] font-medium text-on-surface mb-3">{title}</h3>
+    <div
+      className="elevation-1 card-hover animate-fadeInUp rounded-xl p-4"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <h3 className="text-[18px] leading-[24px] font-semibold text-on-surface mb-3">{title}</h3>
       {children}
     </div>
   )
@@ -51,7 +54,7 @@ function PropertySection({ property, range }) {
         <>
           <KPIRow data={data} />
 
-          <Panel title={range === 'today' ? 'Pageviews by Hour' : 'Pageviews by Day'}>
+          <Panel title={range === 'today' ? 'Pageviews by Hour' : 'Pageviews by Day'} delay={80}>
             {range === 'today' ? (
               <HourlyChart data={data.pageviewsByHour} />
             ) : (
@@ -60,19 +63,19 @@ function PropertySection({ property, range }) {
           </Panel>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Panel title="Top Pages">
+            <Panel title="Top Pages" delay={120}>
               <TopPagesTable pages={data.topPages} />
             </Panel>
-            <Panel title="Traffic Sources">
+            <Panel title="Traffic Sources" delay={140}>
               <TrafficSources sources={data.trafficSources} />
             </Panel>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Panel title="Devices">
+            <Panel title="Devices" delay={160}>
               <DeviceChart devices={data.deviceCategory} />
             </Panel>
-            <Panel title="Top Countries">
+            <Panel title="Top Countries" delay={180}>
               <CountriesList countries={data.topCountries} />
             </Panel>
           </div>
@@ -95,7 +98,7 @@ export default function App() {
       />
 
       <main className="mx-auto max-w-[1400px] px-4 sm:px-6 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" key={refreshKey}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fadeInUp" key={refreshKey}>
           {PROPERTIES.map((property) => (
             <PropertySection key={property.key} property={property} range={range} />
           ))}

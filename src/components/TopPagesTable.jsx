@@ -17,7 +17,7 @@ export default function TopPagesTable({ pages }) {
         </thead>
         <tbody>
           {pages.map((p) => (
-            <tr key={p.path} className="border-t border-outline-variant/40">
+            <tr key={p.path} className="border-t border-outline-variant/60 hover:bg-surface-2 transition-colors">
               <td className="py-2 pr-3 font-mono text-[13px] text-on-surface truncate max-w-[220px]" title={p.path}>
                 {p.path}
               </td>
@@ -31,7 +31,7 @@ export default function TopPagesTable({ pages }) {
                   </span>
                   <div className="w-16 h-1.5 rounded-full bg-surface-2 overflow-hidden">
                     <div
-                      className="h-full bg-primary rounded-full"
+                      className="h-full bg-primary rounded-full transition-[width] duration-700 ease-out"
                       style={{ width: `${Math.min(p.percentage, 100)}%` }}
                     />
                   </div>

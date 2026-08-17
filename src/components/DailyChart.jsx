@@ -35,7 +35,14 @@ export default function DailyChart({ data }) {
             width={36}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: colors.outlineVariant, opacity: 0.2 }} />
-          <Bar dataKey="pageviews" fill={colors.primary} radius={[4, 4, 0, 0]} isAnimationActive={false} />
+          <Bar
+            dataKey="pageviews"
+            fill={colors.primary}
+            radius={[6, 6, 0, 0]}
+            isAnimationActive
+            animationDuration={700}
+            animationEasing="ease-out"
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>
