@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TopAppBar from './components/TopAppBar.jsx'
+import PropertyTabs from './components/PropertyTabs.jsx'
 import SectionHeader from './components/SectionHeader.jsx'
 import KPIRow from './components/KPIRow.jsx'
 import HourlyChart from './components/HourlyChart.jsx'
@@ -98,6 +99,9 @@ function PropertySection({ property, range }) {
 export default function App() {
   const [range, setRange] = useState('today')
   const [refreshKey, setRefreshKey] = useState(0)
+  const [activeKey, setActiveKey] = useState(PROPERTIES[0].key)
+
+  const activeProperty = PROPERTIES.find((p) => p.key === activeKey) ?? PROPERTIES[0]
 
   return (
     <div className="min-h-screen bg-bg text-on-surface">
@@ -107,11 +111,16 @@ export default function App() {
         onRefresh={() => setRefreshKey((k) => k + 1)}
       />
 
-      <main className="mx-auto max-w-[1400px] px-4 sm:px-6 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fadeInUp" key={refreshKey}>
-          {PROPERTIES.map((property) => (
-            <PropertySection key={property.key} property={property} range={range} />
-          ))}
+      <main className="mx-auto max-w-[1100px] px-4 sm:px-6 py-6">
+        <PropertyTabs
+          properties={PROPERTIES}
+          active={activeKey}
+          onChange={setActiveKey}
+          isLive={range === 'today'}
+        />
+
+        <div key={`${activeKey}-${refreshKey}`} className="animate-fadeInUp">
+          <PropertySection property={activeProperty} range={range} />
         </div>
       </main>
     </div>
