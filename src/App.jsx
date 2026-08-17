@@ -29,7 +29,9 @@ function Panel({ title, children }) {
 function PropertySection({ property, range }) {
   const { data, loading, error, lastUpdated, refetch, secondsToRefresh } = useGA4(property.endpoint, range)
 
-  if (loading && !data) {
+  const dataMatchesRange = data && (range === 'today' ? data.pageviewsByHour : data.pageviewsByDay)
+
+  if (!error && !dataMatchesRange) {
     return <SectionSkeleton />
   }
 
