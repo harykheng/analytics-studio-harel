@@ -13,7 +13,7 @@ export function useGA4(endpoint, range) {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch(`${endpoint}?range=${range}`)
+      const res = await fetch(`${endpoint}?range=${range}`, { cache: 'no-store' })
       const json = await res.json()
       if (!res.ok || json.error) {
         throw new Error(json.message || 'Failed to load analytics data')
