@@ -18,6 +18,7 @@ import { useGA4 } from './hooks/useGA4.js'
 const PROPERTIES = [
   { key: 'harel', name: 'Studio Harel', domain: 'studioharel.id', endpoint: '/api/ga4-harel' },
   { key: 'ordi', name: 'Ordi', domain: 'ordi.studioharel.id', endpoint: '/api/ga4-ordi' },
+  { key: 'ordistore', name: 'Ordi Store', domain: 'ordistore.studioharel.id', endpoint: '/api/ga4-ordistore' },
 ]
 
 function Panel({ title, children, delay = 0 }) {
